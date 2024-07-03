@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 
 app.use(express.json());
+app.use(middleware);
 
 let courses = [
     {id:1, name:'course1'},
@@ -40,5 +41,21 @@ app.delete('/courses/:id',(req,res)=> {
     res.json(course);
 }
 );
+
+//logger middleware
+// log this method, ip, hostname, date
+function middleware(req,res,next) {
+    console.log('Logging...');
+    console.log('Method: ', req.method);
+    console.log('IP: ', req.ip);
+    console.log('Hostname: ', req.hostname);
+    console.log('Date: ', new Date());
+
+    next();
+}
+
+//authentication middleware
+// check if the user is authenticated
+
 
 app.listen(3000, ()=> console.log('Listening on port 3000...'));
