@@ -1,4 +1,4 @@
-const UserModel = require('../models/userModel');
+const UserModel = require('../models/user');
 
 exports.createUser = async (req, res) => {
     await UserModel.create({
